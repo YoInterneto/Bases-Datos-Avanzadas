@@ -60,3 +60,27 @@ select CTID from "MiTabla2" where id_cliente=10;
 select * from pg_class;
 
 
+create table "MiTabla3" (
+    "id_cliente"         int ,
+    "nombre"         text ,
+    "apellidos"        text,
+    "direccion"       text,
+	"puntos"          int
+) PARTITION BY HASH (puntos);
+
+create table "particion0" partition of "MiTabla3" for values with (modulus 10, remainder 0);
+create table "particion1" partition of "MiTabla3" for values with (modulus 10, remainder 1);
+create table "particion2" partition of "MiTabla3" for values with (modulus 10, remainder 2);
+create table "particion3" partition of "MiTabla3" for values with (modulus 10, remainder 3);
+create table "particion4" partition of "MiTabla3" for values with (modulus 10, remainder 4);
+create table "particion5" partition of "MiTabla3" for values with (modulus 10, remainder 5);
+create table "particion6" partition of "MiTabla3" for values with (modulus 10, remainder 6);
+create table "particion7" partition of "MiTabla3" for values with (modulus 10, remainder 7);
+create table "particion8" partition of "MiTabla3" for values with (modulus 10, remainder 8);
+create table "particion9" partition of "MiTabla3" for values with (modulus 10, remainder 9);
+
+
+
+select count(*) from "particion9";
+
+
