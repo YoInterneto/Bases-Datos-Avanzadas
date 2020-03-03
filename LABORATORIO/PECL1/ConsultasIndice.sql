@@ -121,6 +121,9 @@ select * from "MiTabla" where not("id_cliente"=3450000);
 select * from pg_statio_all_tables where schemaname = 'public' ;
 
 
+select * from pg_statistic;
+
+
 
 select * from "MiTabla" where "nombre"='nombre3456789';
 select * from pg_statio_all_tables where schemaname = 'public' ;
@@ -169,6 +172,29 @@ select * from pg_statio_all_tables where schemaname = 'public' ;
 select pg_stat_reset();
 select * from "MiTabla" where "id_cliente"=6000 and "nombre"='nombre3456789';
 select * from pg_statio_all_tables where schemaname = 'public' ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+log_statement = 'all';
+
+
+
+
+
+
+
 
 
 
