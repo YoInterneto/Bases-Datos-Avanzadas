@@ -19,7 +19,7 @@ dniLetras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q'
 puestos = ["cajero","cajera","reponedor","reponedora","dependiente","dependienta","mozo de almacen","moza de almacen","encargado","encargada"]
 
 def generador_productos():
-
+    productosW = open("productos.txt","w")
     lista_codigos = []
     cadenaFinal = ""
 
@@ -34,16 +34,18 @@ def generador_productos():
         cadenaFinal += fila
 
         lista_codigos.append(cod_barras)
-
-    print(cadenaFinal)
-    print(lista_codigos)
+    productosW.write(cadenaFinal)
+    productosW.close()
+    print("termino productos")
+    #print(cadenaFinal)
+    #print(lista_codigos)
 
     return lista_codigos
 
 #id_tienda  nombre  ciudad barrio provincia
 #200.000 tiendas -
 def generador_tiendas():
-
+    tiendasW = open("tiendas.txt","w")
     lista_tiendas = []
     cadenaFinal = ""
 
@@ -58,9 +60,11 @@ def generador_tiendas():
         cadenaFinal += fila
 
         lista_tiendas.append(id_tienda)
-
-    print(cadenaFinal)
-    print(lista_tiendas)
+    tiendasW.write(cadenaFinal)
+    tiendasW.close()
+    print("termino tiendas")
+    #print(cadenaFinal)
+    #print(lista_tiendas)
 
     return lista_tiendas
 
@@ -68,9 +72,9 @@ def generador_tiendas():
 #1 tienda - 100 productos
 #stock entre 10 y 200
 def generador_tiendaProducto(lista_codigos, lista_tiendas):
-
+    tiendas_productosW = open("tienda_productos.txt","w")
     cadenaFinal = ""
-
+    print("entro")
     for tienda in lista_tiendas:
         rango = randrange(95,106)
         lista_productosElegidos = []
@@ -89,12 +93,15 @@ def generador_tiendaProducto(lista_codigos, lista_tiendas):
 
             cadenaFinal += fila
 
-    print(cadenaFinal)
+    tiendas_productosW.write(cadenaFinal)
+    tiendas_productosW.close()
+    print("termino tienda_productos")
+    #print(cadenaFinal)
 
 #cod_trabajador  DNI  nombre  apellidos  puesto  salario  id_tiendaFK
 #1.000.000 - salario(1000,5000)
 def generador_trabajadores(lista_tiendas):
-
+    trabajadoresW = open("trabajadores.txt","w")
     cadenaFinal = ""
     lista_codigoTrabajadores = []
     lista_dni = []
@@ -119,14 +126,18 @@ def generador_trabajadores(lista_tiendas):
         lista_codigoTrabajadores.append(cod_trabajador)
 
         cadenaFinal += fila
-
-    print(cadenaFinal)
+        
+    trabajadoresW.write(cadenaFinal)
+    trabajadoresW.close()
+    print("termino trabajadores")
+    #print(cadenaFinal)
 
     return lista_codigoTrabajadores
 
 #n_ticket, importe, fecha, codigo_trabajador_trabajador
 #5000000 tickets, importe entre 100 y 10000. Fechas en 2019
 def generar_tickets(lista_trabajadores):
+    ticketsW = open("tickets.txt","w")
     cadenaFinal = ""
     lista_numeroTicket = []
 
@@ -153,13 +164,17 @@ def generar_tickets(lista_trabajadores):
 
         cadenaFinal += fila
 
-    print(cadenaFinal)
+    ticketsW.write(cadenaFinal)
+    ticketsW.close()
+
+    print("Termino tickets")
 
     return lista_numeroTicket
 
 #N_ticket_ticket,cod_barras_producto_cantidad
 #Cada ticket tiene entre 1 y 10 productos, cantidad entre 1 y 10
 def generar_tickets_productos(lista_tickets,lista_codigos):
+    tickets_productosW = open("tickets_productos.txt","w")
     cadenaFinal = ""
 
     for ticket in lista_tickets:
@@ -179,9 +194,11 @@ def generar_tickets_productos(lista_tickets,lista_codigos):
             fila += str(randrange(1, 11)) + "\n"
 
             cadenaFinal += fila
+            
+    tickets_productosW.write(cadenaFinal)
+    tickets_productosW.close()
+    print("Termino tickets_productos")
 
-    print(cadenaFinal)
-    
     
 
 
@@ -191,4 +208,5 @@ generador_tiendaProducto(lista_codigos, lista_tiendas)
 lista_trabajadores = generador_trabajadores(lista_tiendas)
 lista_tickets = generar_tickets(lista_trabajadores)
 generar_tickets_productos(lista_tickets,lista_codigos)
+print("Todo terminado")
 
