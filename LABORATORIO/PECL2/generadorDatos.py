@@ -23,13 +23,13 @@ def generador_productos():
     lista_codigos = []
     cadenaFinal = ""
 
-    for cod_barras in range(1, 200):
+    for cod_barras in range(1, 1000001):
         fila = ""
         fila += str(cod_barras) + ";"
         fila += "producto" + str(cod_barras) + ";"
         fila += choice(tipo) + ";"
         fila += choice(descripcion) + ";"
-        fila += str(round(uniform(50,1001),2)) + ";\n"
+        fila += str(randrange(50,1001)) + ";\n"
 
         cadenaFinal += fila
 
@@ -47,7 +47,7 @@ def generador_tiendas():
     lista_tiendas = []
     cadenaFinal = ""
 
-    for id_tienda in range(1,20):
+    for id_tienda in range(1,200001):
         fila = ""
         fila += str(id_tienda) + ";"
         fila += "tienda" + str(id_tienda) + ";"
@@ -99,7 +99,7 @@ def generador_trabajadores(lista_tiendas):
     lista_codigoTrabajadores = []
     lista_dni = []
 
-    for cod_trabajador in range(1, 20):
+    for cod_trabajador in range(1, 1000001):
         fila = ""
         fila += str(cod_trabajador) + ";"
 
@@ -113,7 +113,7 @@ def generador_trabajadores(lista_tiendas):
         fila += "nombre" + str(randrange(1,101)) + ";"
         fila += "apellido1" + str(randrange(1,81)) + "-" + "apellido2" + str(randrange(1,80)) + ";"
         fila += choice(puestos) + ";"
-        fila += str(round(uniform(1000,5001),2)) + ";"
+        fila += str(randrange(1000,5001)) + ";"
         fila += str(lista_tiendas[cod_trabajador%5]) + "\n"
 
         lista_codigoTrabajadores.append(cod_trabajador)
@@ -124,12 +124,71 @@ def generador_trabajadores(lista_tiendas):
 
     return lista_codigoTrabajadores
 
+#n_ticket, importe, fecha, codigo_trabajador_trabajador
+#5000000 tickets, importe entre 100 y 10000. Fechas en 2019
+def generar_tickets(lista_trabajadores):
+    cadenaFinal = ""
+    lista_numeroTicket = []
 
+    for num_ticket in range(1, 5000001):
+        fila = ""
+        fila += str(num_ticket) + ";"
+
+        fila += str(randrange(100,10000)) + ";"
+        
+        mes = randrange(1,13)
+        if(mes == 2):
+            dia = randrange(1,29)
+            fila += str(dia) + "/" + str(mes) + "/" + str(2019) + ";"
+        elif(mes == 4 or mes == 6 or mes == 10):
+            dia = randrange(1,31)
+            fila += str(dia) + "/" + str(mes) + "/" + str(2019) + ";"
+        else:
+            dia = randrange(1,32)
+            fila += str(dia) + "/" + str(mes) + "/" + str(2019) + ";"
+
+        trabajador = str(choice(lista_trabajadores))
+        fila += trabajador + "\n"
+        lista_numeroTicket.append(num_ticket)
+
+        cadenaFinal += fila
+
+    print(cadenaFinal)
+
+    return lista_numeroTicket
+
+#N_ticket_ticket,cod_barras_producto_cantidad
+#Cada ticket tiene entre 1 y 10 productos, cantidad entre 1 y 10
+def generar_tickets_productos(lista_tickets,lista_codigos):
+    cadenaFinal = ""
+
+    for ticket in lista_tickets:
+        rango = randrange(1,10)
+        lista_productosElegidos = []
+        for producto in range (1,rango+1):
+            fila = ""
+
+            fila += str(ticket) + ";"
+
+            productoElegido = choice(lista_codigos)
+            while(productoElegido in lista_productosElegidos):
+                productoElegido = choice(lista_codigos)
+            lista_productosElegidos.append(productoElegido)
+
+            fila += str(productoElegido) + ";"
+            fila += str(randrange(1, 11)) + "\n"
+
+            cadenaFinal += fila
+
+    print(cadenaFinal)
+    
+    
 
 
 lista_codigos = generador_productos()
 lista_tiendas = generador_tiendas()
 generador_tiendaProducto(lista_codigos, lista_tiendas)
-generador_trabajadores(lista_tiendas)
-
+lista_trabajadores = generador_trabajadores(lista_tiendas)
+lista_tickets = generar_tickets(lista_trabajadores)
+generar_tickets_productos(lista_tickets,lista_codigos)
 
