@@ -74,20 +74,12 @@ def generador_tiendas():
 def generador_tiendaProducto(lista_codigos, lista_tiendas):
     tiendas_productosW = open("tienda_productos.txt","w")
     cadenaFinal = ""
-    print("entro")
     for tienda in lista_tiendas:
         rango = randrange(95,106)
-        lista_productosElegidos = []
         for producto in range (1,rango+1):
             fila = ""
-
             fila += str(tienda) + ";"
-
             productoElegido = choice(lista_codigos)
-            while(productoElegido in lista_productosElegidos):
-                productoElegido = choice(lista_codigos)
-            lista_productosElegidos.append(productoElegido)
-
             fila += str(productoElegido) + ";"
             fila += str(randrange(10, 201)) + "\n"
 
@@ -144,7 +136,6 @@ def generar_tickets(lista_trabajadores):
     for num_ticket in range(1, 5000001):
         fila = ""
         fila += str(num_ticket) + ";"
-
         fila += str(randrange(100,10000)) + ";"
         
         mes = randrange(1,13)
@@ -179,17 +170,10 @@ def generar_tickets_productos(lista_tickets,lista_codigos):
 
     for ticket in lista_tickets:
         rango = randrange(1,10)
-        lista_productosElegidos = []
         for producto in range (1,rango+1):
             fila = ""
-
             fila += str(ticket) + ";"
-
             productoElegido = choice(lista_codigos)
-            while(productoElegido in lista_productosElegidos):
-                productoElegido = choice(lista_codigos)
-            lista_productosElegidos.append(productoElegido)
-
             fila += str(productoElegido) + ";"
             fila += str(randrange(1, 11)) + "\n"
 
@@ -201,12 +185,22 @@ def generar_tickets_productos(lista_tickets,lista_codigos):
 
     
 
-
+print("Generando datos productos...")
 lista_codigos = generador_productos()
+
+print("Generando datos tienda...")
 lista_tiendas = generador_tiendas()
+
+print("Generando datos tienda_producto...")
 generador_tiendaProducto(lista_codigos, lista_tiendas)
+
+print("Generando datos trabajadores...")
 lista_trabajadores = generador_trabajadores(lista_tiendas)
+
+print("Generando datos tickets...")
 lista_tickets = generar_tickets(lista_trabajadores)
+
+print("Generando datos tickets_productos...")
 generar_tickets_productos(lista_tickets,lista_codigos)
 print("Todo terminado")
 
