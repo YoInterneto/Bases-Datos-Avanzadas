@@ -139,4 +139,28 @@ REFERENCES public."Productos" ("Codigo de barras") MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
+select * from "Trabajador";
+
+select * from "Productos";
+
+copy "Tienda_Productos" from 'C:\tienda_productos.txt' with delimiter as ';' 
+
+copy "Ticket" from 'C:\tickets.txt' with delimiter as ';' 
+
+copy "Ticket_Productos" from 'C:\tickets_productos.txt' with delimiter as ';' 
+
+insert into "Ticket" values(1,965,'3/8/2019',868670)
+
+select * from "Ticket";
+delete from "Ticket";
+
+select * from "Tienda_Productos"
+delete from "Tienda_Productos";
+
+select * from "Ticket_Productos"
+delete from "Ticket_Productos";
+
+
+
+
 
