@@ -140,3 +140,15 @@ ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
 
+select * from pg_stat_database
+
+select count(*) from "Tiendga"
+
+
+
+
+
+
+
+
+
