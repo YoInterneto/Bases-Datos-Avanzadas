@@ -28,7 +28,7 @@ select * from txid_current();
 select * from txid_current_snapshot();
 
 
-delete from "Tienda" where "Id_tienda"=1000;
+delete from "Tienda" where "Id_tienda"=4;
 delete from "Trabajador" where "Nombre"='Siro';
 delete from "Ticket" where "Importe"=15;
 
@@ -40,11 +40,38 @@ insert into "Trabajador" values(1,'46345677H', 'Siro','Lopez','Dependiente',2000
 insert into "Ticket" values(1,15, '05/05/2020','1'); 
 commit;
 
+begin;
+insert into "Tienda" values(4,'Tienda4', 'Sevilla','Giralda','Andalucia'); 
+
+select * from "Tienda";
+
 select * from txid_current();
 select * from txid_current_snapshot();
 
 
 --Pregunta 10
+select "fecha","Trabajador"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
+inner join "Ticket" on "codigo_trabajador" = "codigo_trabajador_Trabajador";
+
+
+--Pregunta 14
+begin;
+insert into "Tienda" values(2000,'Tienda4', 'Madrid','Barrio Salamanca','Madrid'); 
+insert into "Trabajador" values(2,'46345688K', 'Roberto','Martinez','Encargado',3500,2000); 
+insert into "Ticket" values(54300,40, '06/05/2020','2');
+update "Trabajador" set "Id_tienda_Tienda"=1000 where "Id_tienda_Tienda"=2000;
+commit;
+
+select "fecha","Trabajador"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
+inner join "Ticket" on "codigo_trabajador" = "codigo_trabajador_Trabajador";
+
+--Pregunta 15
+begin;
+insert into "Tienda" values(5,'Tienda5', 'Barcelona','Diagonal','Catalunya'); 
+insert into "Trabajador" values(3,'53645688D', 'Diego','Alonso','Mozo',1750,5); 
+insert into "Ticket" values(10,85, '06/06/2020','3');
+rollback;
+
 select "fecha","Trabajador"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
 inner join "Ticket" on "codigo_trabajador" = "codigo_trabajador_Trabajador";
 
