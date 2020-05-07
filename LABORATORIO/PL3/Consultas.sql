@@ -72,8 +72,21 @@ insert into "Trabajador" values(3,'53645688D', 'Diego','Alonso','Mozo',1750,5);
 insert into "Ticket" values(10,85, '06/06/2020','3');
 rollback;
 
-select "fecha","Trabajador"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
+select current_user;
+
+select "Trabajador"."Nombre","Tienda"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
+
+select * from  "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda";
+
+select "fecha","Trabajador"."Nombre","Ciudad","Id_tienda","Salario" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
 inner join "Ticket" on "codigo_trabajador" = "codigo_trabajador_Trabajador";
+
+--Pregunta 18
+
+set role usuario1;
+begin;
+update "Trabajador" set "Salario"=3000 where "codigo_trabajador"=45678;
+commit;
 
 
 

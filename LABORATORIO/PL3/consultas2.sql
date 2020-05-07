@@ -3,7 +3,7 @@ set role usuario2;
 
 select * from "Tienda";
 
-select "fecha","Trabajador"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
+select "fecha","Trabajador"."Nombre","Tienda"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
 inner join "Ticket" on "codigo_trabajador" = "codigo_trabajador_Trabajador";
 
 select * from txid_current();
@@ -22,10 +22,18 @@ set role usuario2;
 
 begin;
 update "Tienda" set "Nombre"='Tienda Alcala' where "Id_tienda"=31145;
+update "Trabajador" set "Puesto"='Capataz' where "codigo_trabajador"=45678;
+
 commit;
+
+select * from  "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda";
+
+
+select "Trabajador"."Nombre","Tienda"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
+
+select current_user;
 
 select * from pg_stat_activity;
 
-SELECT COUNT(usename) FROM pg_stat_activity;
 
 
