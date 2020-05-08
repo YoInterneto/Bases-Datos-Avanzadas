@@ -34,6 +34,7 @@ delete from "Ticket" where "Importe"=15;
 
 set role postgres;
 --Pregunta 9
+set role usuario1;
 begin;
 insert into "Tienda" values(1000,'Tienda3', 'Sevilla','Giralda','Andalucia'); 
 insert into "Trabajador" values(1,'46345677H', 'Siro','Lopez','Dependiente',2000,1000); 
@@ -74,18 +75,19 @@ rollback;
 
 select current_user;
 
-select "Trabajador"."Nombre","Tienda"."Nombre","Ciudad","Id_tienda" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
 
 select * from  "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda";
 
 select "fecha","Trabajador"."Nombre","Ciudad","Id_tienda","Salario" from "Tienda" inner join "Trabajador" on "Id_tienda_Tienda"="Id_tienda" 
 inner join "Ticket" on "codigo_trabajador" = "codigo_trabajador_Trabajador";
 
---Pregunta 18
+--Pregunta 18-20
 
 set role usuario1;
 begin;
 update "Trabajador" set "Salario"=3000 where "codigo_trabajador"=45678;
+update "Tienda" set "Barrio"='El Ensanche' where "Id_tienda"=31145;
+
 commit;
 
 

@@ -20,6 +20,7 @@ insert into "Trabajador" values(45678,'24789688X', 'Ana','Gonzalez','Dependiente
 --Pregunta 17
 set role usuario2;
 
+--Pregunta 17-19
 begin;
 update "Tienda" set "Nombre"='Tienda Alcala' where "Id_tienda"=31145;
 update "Trabajador" set "Puesto"='Capataz' where "codigo_trabajador"=45678;
