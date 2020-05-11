@@ -36,5 +36,14 @@ select current_user;
 
 select * from pg_stat_activity;
 
+--Pregunta 23
+set role usuario2;
+begin;
+update "Tienda" set "Nombre"='Saturn' where "Id_tienda"=6789;
+commit;
+
+select * from "Tienda";
+
+
 
 

@@ -90,7 +90,15 @@ update "Tienda" set "Barrio"='El Ensanche' where "Id_tienda"=31145;
 
 commit;
 
+--Pregunta 22
+set role usuario1;
+insert into "Tienda" values(6789,'Tienda13', 'Coslada','Central','Madrid'); 
 
+begin;
+update "Tienda" set "Nombre"='Mediamarkt' where "Id_tienda"=6789;
+commit;
+
+select * from "Tienda" where "Id_tienda"=6789;
 
 
 
