@@ -43,7 +43,12 @@ update "Tienda" set "Nombre"='Saturn' where "Id_tienda"=6789;
 commit;
 
 select * from "Tienda";
+select * from "Ticket";
 
-
+--Pregunta 26
+set role usuario2;
+begin;
+update "Ticket" set "fecha"=current_date where "Nº de tickect"=54321;
+commit;
 
 

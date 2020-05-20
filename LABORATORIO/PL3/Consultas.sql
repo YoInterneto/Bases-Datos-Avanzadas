@@ -20,15 +20,14 @@ delete from "Tienda" where "Id_tienda"=2;
 
 --Pregunta 8
 begin;
-insert into "Tienda" values(2,'Tienda2', 'Barcelona','Canaletas','Catalunya'); 
+insert into "Tienda" values(22,'Tienda2', 'Barcelona','Canaletas','Catalunya'); 
 select * from "Tienda";
 commit;
 
-select * from txid_current();
-select * from txid_current_snapshot();
 
 
-delete from "Tienda" where "Id_tienda"=4;
+
+delete from "Tienda" where "Id_tienda"=22;
 delete from "Trabajador" where "Nombre"='Siro';
 delete from "Ticket" where "Importe"=15;
 
@@ -38,7 +37,7 @@ set role usuario1;
 begin;
 insert into "Tienda" values(1000,'Tienda3', 'Sevilla','Giralda','Andalucia'); 
 insert into "Trabajador" values(1,'46345677H', 'Siro','Lopez','Dependiente',2000,1000); 
-insert into "Ticket" values(1,15, '05/05/2020','1'); 
+insert into "Ticket" values(54321,15, '05/05/2020','1'); 
 commit;
 
 begin;
@@ -100,10 +99,21 @@ commit;
 
 select * from "Tienda" where "Id_tienda"=6789;
 
+select * from "Ticket";
+select * from "Ticket_Productos";
 
 
+--Pregunta 26
+set role usuario1;
+begin;
+update "Ticket" set "Nº de tickect"=223560 where "Nº de tickect"=54321;
+commit;
 
+--Pregunta29
 
-
+begin;
+update "Ticket" set "Importe"=20 where "Nº de tickect"=223560;
+begin;
+delete from "Ticket" where "Nº de tickect"=223560;
 
 
