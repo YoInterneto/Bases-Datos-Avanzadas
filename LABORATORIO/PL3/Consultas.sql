@@ -116,4 +116,6 @@ update "Ticket" set "Importe"=20 where "Nº de tickect"=223560;
 begin;
 delete from "Ticket" where "Nº de tickect"=223560;
 
+--Backup
+insert into "Tienda" values(58,'Tienda47', 'Manzanares','Colina','Madrid'); 
 
