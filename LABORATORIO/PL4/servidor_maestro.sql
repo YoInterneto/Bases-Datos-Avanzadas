@@ -14,7 +14,7 @@ import foreign schema public from server tienda_alberto3 into Tienda3;
 
 
 select * from Tienda3."Tienda";
-
+select * from "Tienda";
 
 
 
